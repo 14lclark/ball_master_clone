@@ -23,7 +23,7 @@ const CRNR = 1
 const CRCL = 2
 
 
-// useful grid functions
+// useful grid functions -- move to new grid class
 function validCoords(x, y, gridWidth, gridHeight) {
   return (x >= 0 && y >= 0 && x < gridWidth && y < gridHeight);
 }

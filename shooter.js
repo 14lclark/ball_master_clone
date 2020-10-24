@@ -20,7 +20,7 @@ class Shooter {
     this.startFrame = 0;
     this.shootCounter = 0;
   }
-  shootOld(x, y, shooter) {
+  shootOld(x, y, shooter) { ////////////////////////////////////// {deprecated
     this.nextLevel = true;
     if (this.allBallsDown()) {
       for (let ball of this.balls) {
@@ -31,7 +31,7 @@ class Shooter {
         setTimeout(shooter.makeMove, shootDelay * i, shooter, i)
       }
     }
-  }
+  } ////////////////////////////////////////////////////////////// deprecated}
   
   shoot(x,y) {
     this.startFrame = frameCount;

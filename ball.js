@@ -71,14 +71,10 @@ class Ball {
             return [true, n];
           }
           break;
-
           }
-
       }
       this.hittable = true;
       return [false];
-
-
     }
 
     update(x, y) { 
@@ -116,6 +112,7 @@ class Ball {
       this.pos.x += cos(this.dir.heading());
       this.pos.y += sin(this.dir.heading());
 
+      // bounce off walls
       if (this.pos.x >= W * SL - ballRad) {
         this.pos.x = W * SL - ballRad;
         this.dir.reflect(this.nHor);
@@ -154,10 +151,6 @@ class Ball {
       noStroke()
       fill(255, this.alpha);
       ellipse(this.pos.x, this.pos.y, ballRad * 2);
-      // if (frameCount % 10 == 0) {
-      //   print([map(this.pos.x, 0, width, 0, W),map(this.pos.y, 0, height-SL, 0, H)]);
-      //   print(this.pos);
-      // }
       pop();
     }
   }

@@ -1,24 +1,6 @@
 class Brickmaker {
   constructor() {
     this.bricks = [];
-    // this.bricks.push(new Square(99, 1, 8));
-    // this.bricks.push(new Square(99, 4, 6));
-    
-    // vert line
-    // for (let i=0;i<12;i++) {
-    //   this.bricks.push(new Square(20,1,i)); 
-    // } 
-    
-    // middle of 3x3 square is bomb
-    // this.bricks.push(new Square(20, 3, 7));
-    // this.bricks.push(new Square(20, 4, 7));
-    // this.bricks.push(new Square(20, 5, 7));
-    // this.bricks.push(new Square(20, 3, 8));
-    // this.bricks.push(new Square(20, 4, 8));
-    // this.bricks.push(new Square(20, 5, 8));
-    // this.bricks.push(new Square(20, 3, 9));
-    // this.bricks.push(new Square(20, 5, 9));
-    // this.bricks[4].bomb = true;
 
     this.col = W;
     this.row = H;
@@ -76,7 +58,7 @@ class Brickmaker {
     }
     for (let i = 0; i < W; i++) {
       let r = random(0,100)
-      if (r <= 20) {
+      if (r <= 25) {
         this.bricks.push(new Square(hp(this.score), i, 0, this.grid));
         counter += 1
       }

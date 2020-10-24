@@ -56,7 +56,7 @@ class Explosion extends Particle {
     fill(255,215,0);
     ellipse(this.x, this.y, 3 * SL);
     
-    fill
+    // fill
     
     pop();
   }

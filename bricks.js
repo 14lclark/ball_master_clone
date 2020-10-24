@@ -1,18 +1,23 @@
+/*
+brick ideas:
+1. shuffle area on destroy
+*/
+
 class Brick {
   constructor(hp, x, y, currentGrid) { // x and y are the grid positions
     this.hp = hp;
     this.grid = createVector(x, y);
-    this.ca = []; // collision points // put corners last
-    this.alive = true;
+    this.collisionPoints = []; // collision points 
+    this.isAlive = true;
     this.currentGrid = currentGrid
     this.nHor = createVector(1, 0);
     this.nVer = createVector(0, -1);
-    this.bomb = false;
+    this.isBomb = false;
     this.rowBreak = false;
     
     let chance = random(0,100);
     if (chance <= 5) {
-      this.bomb = true;
+      this.isBomb = true;
     } else if (5 < chance && chance <= 10 ) {
       this.rowBreak = true
     }
@@ -22,12 +27,12 @@ class Brick {
     this.currentGrid = currentGrid;
   }
   remove(brickmaker) {
-    this.ca = [];
-    if (this.bomb && this.alive) { 
-      this.alive = false;
+    this.collisionPoints = [];
+    if (this.isBomb && this.isAlive) { 
+      this.isAlive = false;
       this.explode(brickmaker); 
     }
-    this.alive = false;
+    this.isAlive = false;
     this.removed = true;
   }
   living() {
@@ -39,7 +44,7 @@ class Brick {
      for (let nbr of nbrs) {
       if (brickmaker.bricks[nbr].grid !== this.grid) {
         brickmaker.bricks[nbr].hp = 0;
-        brickmaker.bricks[nbr].remove(brickmaker);print(nbr);
+        brickmaker.bricks[nbr].remove(brickmaker);
       }
     }
   }
@@ -82,7 +87,7 @@ class Square extends Brick {
   
   update() {
     if (this.living()) {
-      this.ca = []
+      this.collisionPoints = []
       this.x = this.grid.x * SL;
       this.y = this.grid.y * SL;
 
@@ -95,18 +100,18 @@ class Square extends Brick {
       let BR = createVector(this.x + SL - 1, this.y + SL - 1);
 
       // left and right 
-      this.ca.push([LINE, TL, BL, this.nHor]);
-      this.ca.push([LINE, TR, BR, this.nHor]);
+      this.collisionPoints.push([LINE, TL, BL, this.nHor]);
+      this.collisionPoints.push([LINE, TR, BR, this.nHor]);
 
       // top and bottom
-      this.ca.push([LINE, TL, TR, this.nVer]);
-      this.ca.push([LINE, BL, BR, this.nVer]);
+      this.collisionPoints.push([LINE, TL, TR, this.nVer]);
+      this.collisionPoints.push([LINE, BL, BR, this.nVer]);
 
       // corners
-      this.ca.push([CRNR, TL]);
-      this.ca.push([CRNR, TR]);
-      this.ca.push([CRNR, BL]);
-      this.ca.push([CRNR, BR]);
+      this.collisionPoints.push([CRNR, TL]);
+      this.collisionPoints.push([CRNR, TR]);
+      this.collisionPoints.push([CRNR, BL]);
+      this.collisionPoints.push([CRNR, BR]);
 
     }
   }
@@ -114,14 +119,14 @@ class Square extends Brick {
   draw(brickmaker) {
     if (this.living()) {
       push();
-      if (this.bomb) {
+      if (this.isBomb) {
         fill(0);
       } else {
         fill(this.color);
       }
       noStroke();
       rect(this.x + 1, this.y + 1, SL - 1, SL - 1);
-      if (this.bomb) {
+      if (this.isBomb) {
         fill(255); 
       } else {
         fill(0);
@@ -141,6 +146,6 @@ class Circle extends Brick {
   constructor(hp, x, y, currentGrid) {
     super(hp, x, y, currentGrid);
     this.update();
-    this.type = squ;
+    this.type = circle;
   }
 }

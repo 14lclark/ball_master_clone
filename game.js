@@ -31,9 +31,6 @@ class Game {
         background(30);
         this.bricks.draw();
         this.balls.move(this.bricks);
-        // if (frameCount % 10 == 0) {
-        //   print(this.balls.pos);  
-        // }
         this.balls.draw();
         this.footer.draw();
       } else {

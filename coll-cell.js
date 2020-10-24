@@ -1,3 +1,7 @@
+// This class was deprecated, so I think I'm going to transform it into a grid
+// class that deals with all the neighbor-finding and grid maintenance stuff.
+// I don't think it makes sense for the brickmaker to do that anymore.
+
 // broad phase collision detection
 
 class CollCell {
