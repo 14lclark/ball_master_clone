@@ -6,7 +6,7 @@ I lost a couple hours of work (which is why I shifted this to GitHub), so the He
 
 # Known bugs
 A checked box is a fixed bug.
-- [ ] Balls can get trapped inside of bricks until the brick breaks -- I think it's something with the corner collisions.
+- [ ] Balls can get trapped inside of bricks until the brick breaks -- I think it has to do with the ball colliding with multiple corners at once.
 - [X] (Oct. 23, 2020) Balls coming at a brick from certain angles won't collide with bricks at all. This was fixed, but then I lost some work. It's an issue with the broad phase collision detection, and should be easy to fix. 
 
 That's all I'm aware of currently, but please create an issue if you notice anything else.
