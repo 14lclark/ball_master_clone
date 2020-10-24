@@ -91,7 +91,7 @@ class Ball {
 
 
     move(bricks) {
-      let near = this.checkWhich(this.grid); // Check surroundings after moving this.vel times --
+      let near = this.checkNeighbors(this.grid); // Check surroundings after moving this.vel times --
       for (let i = 0; i < this.vel; i++) {   // this is only fine because SL is much larger than it
         this.moveOnce(bricks,near);
       }
@@ -143,87 +143,10 @@ class Ball {
     setPos(pos) {
       this.pos = pos
     }
-    checkWhich() {
-      let bx = floor(map(this.pos.x, 0, W*SL, 0, W));
-      let by = floor(map(this.pos.y, 0, H*SL, 0, H));
-      let temp = []
-      try {
-      temp = temp.concat(this.grid[by][bx]); // this block
-      } catch (err) {}
-      
-      if (this.dir.x > 0 && this.dir.y < 0) {        // moving up right
-        try {
-          temp = temp.concat(this.grid[by][bx + 1]);     // right
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by - 1][bx + 1]); // up right
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by - 1][bx - 1]); // up left
-        } catch (err) {}  
-        try {
-          temp = temp.concat(this.grid[by - 1][bx]);     // up
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx + 1]); // down right
-        } catch (err) {}
-        
-      } else if (this.dir.x > 0 && this.dir.y > 0) { // moving down right
-        try {
-          temp = temp.concat(this.grid[by][bx + 1]);     // right
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx + 1]); // down right
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx - 1]); // down left
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx]);     // down
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by - 1][bx + 1]); // up right
-        } catch (err) {}
-        
-      } else if (this.dir.x < 0 && this.dir.y < 0) { // moving up left
-        try {
-          temp = temp.concat(this.grid[by][bx - 1]);     // left
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by - 1][bx - 1]); // up left
-        } catch (err) {}    
-        try {
-          temp = temp.concat(this.grid[by - 1][bx + 1]); // up right
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by - 1][bx]);     // up
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx - 1]); // down left
-        } catch (err) {}
-        
-      } else if (this.dir.x < 0 && this.dir.y > 0) { // moving down left
-        try {
-          temp = temp.concat(this.grid[by][bx - 1]);     // left
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx - 1]); // down left
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx + 1]); // down right
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by + 1][bx]);     // down
-        } catch (err) {}
-        try {
-          temp = temp.concat(this.grid[by - 1][bx - 1]); // up left
-        } catch (err) {}    
-        
-      } else {
-        return findNeighbors(this.grid,bx,by);
-      }
-
-      return temp.filter(ind => ind !== undefined);
+    checkNeighbors() {
+      let gridX = floor(map(this.pos.x, 0, W*SL, 0, W));
+      let gridY = floor(map(this.pos.y, 0, H*SL, 0, H));
+      return findNeighbors(this.grid,gridX,gridY);
     }
     
     draw() {

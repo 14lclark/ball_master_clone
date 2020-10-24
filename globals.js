@@ -23,37 +23,22 @@ const CRNR = 1
 const CRCL = 2
 
 
-// useful grid function
+// useful grid functions
+function validCoords(x, y, gridWidth, gridHeight) {
+  return (x >= 0 && y >= 0 && x < gridWidth && y < gridHeight);
+}
+
 function findNeighbors(grid, bx, by) {
   let temp = [];
-  try {
-    temp = temp.concat(grid[by][bx]);         // this
-  } catch (err) {}
-  try {
-    temp = temp.concat(grid[by + 1][bx - 1]); // down left
-  } catch (err) {}
-  try {
-    temp = temp.concat(grid[by - 1][bx - 1]); // up left
-  } catch (err) {}    
-  try {
-    temp = temp.concat(grid[by][bx + 1]);     // right
-  } catch (err) {}
-  try {
-    temp = temp.concat(grid[by + 1][bx + 1]); // down right
-  } catch (err) {}
-  try {
-    temp = temp.concat(grid[by - 1][bx + 1]); // up right
-  } catch (err) {}
-  try {
-    temp = temp.concat(grid[by - 1][bx]);     // up
-  } catch (err) {}
-  try {
-    temp = temp.concat(grid[by][bx - 1]);     // left
-  } catch (err) {}
-  try {
-    temp = temp.concat(grid[by + 1][bx]);     // down
-  } catch (err) {}
-  
+  for (let deltaX of [-1,0,1]) {
+    let newX = bx + deltaX;
+    for (let deltaY of [-1,0,1]) {
+      let newY = by + deltaY;
+      if (validCoords(newX, newY, W, H)) {
+        temp = temp.concat(grid[newY][newX]);
+      }
+    }
+  }
   let temp1 = temp.filter(ind => ind !== undefined);
   return temp1;
 }
