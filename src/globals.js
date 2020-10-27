@@ -8,10 +8,11 @@ const triDL  = "triangle down left";
 const triDR  = "triangle down right";
 
 // scaling: block scale, window width, window height, ball size
-const SL      = 50;
-const W       = 9;
-const H       = 12;
-const ballRad = Math.floor(SL / 7);
+const SL         = 50;
+const W          = 9;
+const H          = 12;
+const ballRad    = Math.floor(SL / 7);
+const blockSpace = 4;
 
 // timing
 const shootDelay = 100; // ms; deprecated

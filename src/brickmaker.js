@@ -82,8 +82,8 @@ class Brickmaker {
     this.checkGameOver();
   }
   checkGameOver() {
-    for (let brick of this.bricks) {
-      if (brick.alive == true && brick.grid.y === H-1) {
+      for (let brick of this.bricks) {
+	  if (brick.isAlive && brick.grid.y === (H-1)) {
         this.gameOver = true;
         return;
       }

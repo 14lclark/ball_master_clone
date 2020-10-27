@@ -32,7 +32,7 @@ class Ball {
       return d1 === d2;
     }
     
-    for (let ca of brick.ca) {
+      for (let ca of brick.collisionPoints) {
       let a = ca[1];
       
       switch (ca[0]) {
@@ -88,7 +88,7 @@ class Ball {
 
     move(bricks) {
       let near = this.checkNeighbors(this.grid); // Check surroundings after moving this.vel times --
-      for (let i = 0; i < this.vel; i++) {   // this is only fine because SL is much larger than it
+      for (let i = 0; i < this.vel; i++) {       // this is only fine because SL >> this.vel
         this.moveOnce(bricks,near);
       }
     }

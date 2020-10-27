@@ -34,7 +34,6 @@ class Game {
         this.balls.draw();
         this.footer.draw();
       } else {
-
         this.end.draw(this.score);
       }
     } else {
@@ -68,6 +67,7 @@ class Game {
   returnToHand() {
     this.balls.returnToHand(this.bricks);
   }
+    
   gameOver() {
     return this.bricks.gameOver;
   }

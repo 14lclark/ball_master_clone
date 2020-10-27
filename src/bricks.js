@@ -48,6 +48,7 @@ class Brick {
       }
     }
   }
+    
   changeColor() {
     if (this.hp < 50) {
       this.color = color(0, 255, 0);
@@ -94,10 +95,10 @@ class Square extends Brick {
       ////////// add collision areas -- can make more efficient
       ////////// by telling which side each area is on for tighter control
 
-      let TL = createVector(this.x + 1, this.y + 1);
-      let TR = createVector(this.x + SL - 1, this.y + 1);
-      let BL = createVector(this.x + 1, this.y + SL - 1);
-      let BR = createVector(this.x + SL - 1, this.y + SL - 1);
+      let TL = createVector(this.x + blockSpace/2, this.y + blockSpace/2);
+      let TR = createVector(this.x + SL - blockSpace/2, this.y + blockSpace/2);
+      let BL = createVector(this.x + blockSpace/2, this.y + SL - blockSpace/2);
+      let BR = createVector(this.x + SL - blockSpace/2, this.y + SL - blockSpace/2);
 
       // left and right 
       this.collisionPoints.push([LINE, TL, BL, this.nHor]);
@@ -125,7 +126,7 @@ class Square extends Brick {
         fill(this.color);
       }
       noStroke();
-      rect(this.x + 1, this.y + 1, SL - 1, SL - 1);
+      rect(this.x + blockSpace/2, this.y + blockSpace/2, SL - blockSpace, SL - blockSpace);
       if (this.isBomb) {
         fill(255); 
       } else {
@@ -143,9 +144,17 @@ class Square extends Brick {
 }
 
 class Circle extends Brick {
-  constructor(hp, x, y, currentGrid) {
-    super(hp, x, y, currentGrid);
+  constructor(hp, gridX, gridY, currentGrid) {
+    super(hp, gridX, gridY, currentGrid);
     this.update();
     this.type = circle;
+  }
+  update() {
+    if (this.living()) {
+      this.x = this.grid.x * SL;
+      this.y = this.grid.y * SL
+      this.center = createVector(this.x + SL/2, this.y + SL/2);
+      this.collisionPoints = [[CRCL, this.center, SL/2 - blockSpace/2]];
+    }
   }
 }
