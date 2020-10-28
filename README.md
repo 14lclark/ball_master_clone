@@ -13,6 +13,8 @@ That's all I'm aware of currently, but please create an issue if you notice anyt
 
 # Features to implement
 - [ ] New block shapes and power blocks
+- [ ] Ball counter when shooting and returning to the hand
+- [ ] Animate balls returning to hand after hitting bottom
 - [ ] Help menu
-- [ ] Particle system
+- [ ] Particle system for breaking blocks, bombs exploding, etc.
 - [ ] Ideas? Open an issue or a pull request.
