@@ -60,7 +60,10 @@ class Brickmaker {
       let r = random(0,100)
       if (r <= 25) {
         this.bricks.push(new Square(hp(this.score), i, 0, this.grid));
-        counter += 1
+          counter += 1;
+      } else if (r <= 35) {
+        this.bricks.push(new Circle(hp(this.score), i, 0, this.grid));
+        counter += 1;
       }
     }
     if (counter === 0) {

@@ -154,7 +154,31 @@ class Circle extends Brick {
       this.x = this.grid.x * SL;
       this.y = this.grid.y * SL
       this.center = createVector(this.x + SL/2, this.y + SL/2);
-      this.collisionPoints = [[CRCL, this.center, SL/2 - blockSpace/2]];
+      this.radius = SL/2 - blockSpace/2;	
+      this.collisionPoints = [[CRCL, this.center, this.radius]];
+    }
+  }
+  draw(brickmaker) {
+    if (this.living()) {
+      push();
+      if (this.isBomb) {
+        fill(0);
+      } else {
+        fill(this.color);
+      }
+      noStroke();
+      ellipse(this.center.x, this.center.y, 2 * this.radius);
+      if (this.isBomb) {
+        fill(255); 
+      } else {
+        fill(0);
+      }
+      textSize(SL / 3);
+      textAlign(CENTER, CENTER);
+      text(this.hp, this.x + SL / 2, this.y + SL / 2);
+      pop();
+    } else if (!this.removed) {
+      this.remove(brickmaker);
     }
   }
 }
